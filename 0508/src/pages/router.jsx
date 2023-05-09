@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Main from '../Main';
+import Main from './main/index';
 
 export default function Router() {
   return (
