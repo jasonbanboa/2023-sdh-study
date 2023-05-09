@@ -1,21 +1,17 @@
 import React from 'react'
 import * as S from './styled'
-import { useState, useEffect } from 'react'
+import Button from '../../../components/Button'
 
-export default function CreateItemBox() {
-  const [input, setInput] = useState('');
-
-  useEffect(() => {
-    console.log(input);
-  }, [input]);
+export default function CreateItemBox({ onChange }) {
 
   const handleInput = (e) => {
-    setInput(e.target.value);
+    onChange(e.target.value);
   }
 
   return (
     <S.InputBox>
-      <S.Input onInput={handleInput} value={input} placeholder="Todo를 입력해주세요" />
+      <S.Input onChange={handleInput} placeholder="Todo를 입력해주세요" />
+      <Button>등록</Button>
     </S.InputBox>
   )
 }
