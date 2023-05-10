@@ -1,9 +1,9 @@
 import * as S from './styled'
 import React from 'react'
 
-export default function Button({ children }) {
+export default function Button(props) {
   return (
-    <S.Button>{children}</S.Button>
+    <S.Button {...props}>{props.children}</S.Button>
   );
 }
 
