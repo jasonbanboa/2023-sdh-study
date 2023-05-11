@@ -19,7 +19,7 @@ export default function CreateItemBox({ value, onChange, createTodo }) {
 
   return (
     <S.InputBox>
-      <S.Input onKeyDown={handleEnterPress} value={value} onChange={handleInput} placeholder="Todo를 입력해주세요" />
+      <S.Input onKeyUp={handleEnterPress} value={value} onChange={handleInput} placeholder="Todo를 입력해주세요" />
       <Button onClick={createTodo} disabled={!value.trim()}>등록</Button>
     </S.InputBox>
   )
