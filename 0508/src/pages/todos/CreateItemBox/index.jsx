@@ -10,11 +10,11 @@ export default function CreateItemBox({ value, onChange, createTodo }) {
 
   const handleEnterPress = (e) => {
     const input = e.target.value;
-    if (!input.trim()) return;
+    if (!input.trim()) 
+      return;
     
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter') 
       createTodo();
-    }
   }
 
   return (
