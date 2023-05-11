@@ -10,8 +10,13 @@ export default function Todos() {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    console.log(todoName);
-  }, [todoName]);
+    const TODOS_FORM_LOCALSTORAGE = JSON.parse(localStorage.getItem('todos')) || [];
+    setTodos(TODOS_FORM_LOCALSTORAGE);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
 
   const createTodo = () => { 
     setTodoName('');
