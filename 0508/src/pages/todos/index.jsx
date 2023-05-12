@@ -4,11 +4,13 @@ import CreateItemBox from './CreateItemBox'
 import ItemList from './ItemList'
 import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react'
+import Button from '../../components/Button';
 
 export default function Todos() {
   const [todoName, setTodoName] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [todos, setTodos] = useState([]);
+  const [selectedTodosID, setSelectedTodosID] = useState([]);
 
   useEffect(() => {
     const TODOS_FORM_LOCALSTORAGE = JSON.parse(localStorage.getItem('todos')) || [];
@@ -18,6 +20,10 @@ export default function Todos() {
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
+
+  useEffect(() => {
+    console.log(selectedTodosID);
+  }, [selectedTodosID]);
 
   const createTodo = () => { 
     setTodoName('');
@@ -33,11 +39,19 @@ export default function Todos() {
     });
   }
 
+  const deleteSelectedTodos = () => {
+    setTodos((prevState) => {
+      return prevState.filter(({ id }) => !selectedTodosID.includes(id));
+    });
+    setSelectedTodosID([]);
+  }
+
   return (
     <S.Container>
       <S.Title>Todo List</S.Title>
       <CreateItemBox searchQuery={searchQuery} setSearchQuery={setSearchQuery} value={todoName} onChange={setTodoName} createTodo={createTodo} />
-      <ItemList searchQuery={searchQuery} todos={todos} deleteTodo={deleteTodo} />
+      {selectedTodosID.length !== 0 && <Button onClick={deleteSelectedTodos}>선택된 todo 삭제</Button>}
+      <ItemList setSelectedTodosID={setSelectedTodosID} searchQuery={searchQuery} todos={todos} deleteTodo={deleteTodo} />
     </S.Container>
   )
 }
