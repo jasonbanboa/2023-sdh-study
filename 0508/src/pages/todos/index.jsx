@@ -7,6 +7,7 @@ import { useState } from 'react'
 
 export default function Todos() {
   const [todoName, setTodoName] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
@@ -35,8 +36,8 @@ export default function Todos() {
   return (
     <S.Container>
       <S.Title>Todo List</S.Title>
-      <CreateItemBox value={todoName} onChange={setTodoName} createTodo={createTodo} />
-      <ItemList todos={todos} deleteTodo={deleteTodo} />
+      <CreateItemBox searchQuery={searchQuery} setSearchQuery={setSearchQuery} value={todoName} onChange={setTodoName} createTodo={createTodo} />
+      <ItemList searchQuery={searchQuery} todos={todos} deleteTodo={deleteTodo} />
     </S.Container>
   )
 }
